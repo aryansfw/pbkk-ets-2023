@@ -35,6 +35,8 @@ export default function Inventory({ auth, ...props }) {
         kondisi: ["Baik", "Layak", "Rusak"],
     };
 
+    console.log(showAddItem);
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -70,123 +72,6 @@ export default function Inventory({ auth, ...props }) {
                     ))}
                 </ul>
             </div>
-
-            <Modal show={showAddItem} onClose={closeModal}>
-                <form onSubmit={addItem} className="p-6">
-                    <div>
-                        <InputLabel htmlFor="jenis" value="Jenis" />
-
-                        <select
-                            id="jenis"
-                            value={data.jenis}
-                            name="jenis"
-                            className="w-full"
-                            onChange={(e) => setData("jenis", e.target.value)}
-                        >
-                            {itemOptions.jenis.map((name) => (
-                                <option key={name} value={name}>
-                                    {name}
-                                </option>
-                            ))}
-                        </select>
-
-                        <InputError message={errors.jenis} className="mt-2" />
-                    </div>
-                    <div className="mt-4">
-                        <InputLabel htmlFor="kondisi" value="Kondisi" />
-                        <select
-                            id="kondisi"
-                            value={data.kondisi}
-                            name="kondisi"
-                            className="w-full"
-                            onChange={(e) => setData("kondisi", e.target.value)}
-                        >
-                            {itemOptions.kondisi.map((name) => (
-                                <option key={name} value={name}>
-                                    {name}
-                                </option>
-                            ))}
-                        </select>
-                        <InputError message={errors.kondisi} className="mt-2" />
-                    </div>
-                    <div className="mt-4">
-                        <InputLabel htmlFor="keterangan" value="Keterangan" />
-
-                        <TextInput
-                            id="keterangan"
-                            type="text"
-                            name="keterangan"
-                            value={data.keterangan}
-                            className="mt-1 block w-full"
-                            onChange={(e) =>
-                                setData("keterangan", e.target.value)
-                            }
-                        ></TextInput>
-
-                        <InputError
-                            message={errors.keterangan}
-                            className="mt-2"
-                        />
-                    </div>
-
-                    <div className="mt-4">
-                        <InputLabel
-                            htmlFor="deskripsi_kecacatan"
-                            value="Kecacatan (Jika Ada)"
-                        />
-
-                        <TextInput
-                            id="deskripsi_kecacatan"
-                            type="text"
-                            name="deskripsi_kecacatan"
-                            value={data.deskripsi_kecacatan}
-                            className="mt-1 block w-full"
-                            onChange={(e) =>
-                                setData("deskripsi_kecacatan", e.target.value)
-                            }
-                        ></TextInput>
-
-                        <InputError
-                            message={errors.deskripsi_kecacatan}
-                            className="mt-2"
-                        />
-                    </div>
-
-                    <div className="mt-4">
-                        <InputLabel htmlFor="jumlah" value="Jumlah" />
-
-                        <TextInput
-                            id="jumlah"
-                            type="number"
-                            name="jumlah"
-                            value={data.jumlah}
-                            className="mt-1 block w-full"
-                            onChange={(e) => setData("jumlah", e.target.value)}
-                        ></TextInput>
-
-                        <InputError message={errors.jumlah} className="mt-2" />
-                    </div>
-
-                    <div className="mt-4">
-                        <InputLabel htmlFor="gambar" value="Gambar" />
-
-                        <input
-                            id="gambar"
-                            type="file"
-                            name="gambar"
-                            value={data.gambar}
-                            className="mt-1 block w-full"
-                            onChange={(e) => setData("gambar", e.target.value)}
-                        ></input>
-
-                        <InputError message={errors.jumlah} className="mt-2" />
-                    </div>
-
-                    <PrimaryButton className="mt-4 " disabled={processing}>
-                        Add Item
-                    </PrimaryButton>
-                </form>
-            </Modal>
 
             <Modal show={showAddItem} onClose={closeModal}>
                 <form onSubmit={addItem} className="p-6">
